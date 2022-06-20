@@ -1,4 +1,5 @@
-require 'httparty'
+require 'faraday'
+require 'faraday-http-cache'
 require 'gimme_wikidata/entity'
 require 'gimme_wikidata/enums'
 
@@ -29,6 +30,11 @@ module GimmeWikidata
     ##
     # The current language to use in all communication with the Wikidata API.
     @@language = Languages::ENGLISH
+    @@cache = nil
+
+    def self.set_cache(cache)
+      @@cache = cache
+    end
 
     ##
     # Set the language to use when communicating to the the WikidataAPI.
@@ -107,15 +113,22 @@ module GimmeWikidata
     ##
     # Makes a call to the Wikidata API and formats the response into a symbolized hash
     #
-    # Uses HTTParty gem
+    # Uses Faraday gem
     #
     # * *Parameters*:
     #   - +query+ -> The query for the API call
     # * *Returns* :
     #   - A hash representation of the API's response
     def self.make_call(query)
-      response = HTTParty.get(query).to_h
-      SymbolizeHelper.symbolize_recursive(response)
+      response =
+        Faraday.new(url: query) do |f|
+          f.use :http_cache, store: @@cache if @@cache
+
+          f.request :json
+          f.response :json
+        end.get
+
+      SymbolizeHelper.symbolize_recursive(response.body)
     end
 
   end

@@ -37,10 +37,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'dotenv', '~> 2.0.2', '>= 2.0.2'
   spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.5.2', '>= 0.5.2'
 
-  spec.add_dependency 'httparty', '~> 0.20.0', '>= 0.20.0'
+  spec.add_dependency 'faraday'
+  spec.add_dependency 'faraday-http-cache'
   spec.add_dependency 'ruby-enum', '~> 0.5.0', '>= 0.5.0'
   spec.add_dependency 'colorize', '~> 0.7.7', '>= 0.7.7'
   spec.add_dependency 'json', '~> 2.6.0', '>= 2.6.0'
   spec.add_dependency 'carbon_date', '~> 0.1.2', '>= 0.1.2'
-
 end
