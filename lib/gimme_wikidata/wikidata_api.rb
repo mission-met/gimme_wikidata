@@ -30,10 +30,10 @@ module GimmeWikidata
     ##
     # The current language to use in all communication with the Wikidata API.
     @@language = Languages::ENGLISH
-    @@cache = nil
+    @@cache_options = nil
 
-    def self.set_cache(cache)
-      @@cache = cache
+    def self.set_cache_options(cache_options)
+      @@cache_options = cache_options
     end
 
     ##
@@ -122,7 +122,9 @@ module GimmeWikidata
     def self.make_call(query)
       response =
         Faraday.new(url: query) do |f|
-          f.use :http_cache, store: @@cache if @@cache
+          if @@cache_options
+            f.use :httpdisk, **@@cache_options
+          end
 
           f.request :json
           f.response :json
