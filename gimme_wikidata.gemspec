@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'gimme_wikidata/version'
+require "gimme_wikidata/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "gimme_wikidata"
@@ -27,22 +27,20 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency 'bundler', '~> 1.10'
+  spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '>= 11.1.2', '~> 11.1.2'
-  spec.add_development_dependency 'simplecov', '~> 0.11.2', '>= 0.11.2'
   spec.add_development_dependency 'minitest-display', '>= 0.3.1', '~> 0.3.1'
   spec.add_development_dependency 'minitest-reporters', '~> 1.1.9', '>= 1.1.9'
   spec.add_development_dependency 'm', '>= 1.5.0', '~> 1.5.0'
   spec.add_development_dependency 'pry', '~> 0.10.3', '>= 0.10.3'
-  spec.add_development_dependency 'rdoc', '~> 4.2.2', '>= 4.2.2'
   spec.add_development_dependency 'mocha', '~> 1.1.0', '>= 1.1.0'
   spec.add_development_dependency 'dotenv', '~> 2.0.2', '>= 2.0.2'
   spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.5.2', '>= 0.5.2'
 
-  spec.add_dependency 'httparty', '~> 0.13.7', '>= 0.13.7'
+  spec.add_dependency 'httparty', '~> 0.20.0', '>= 0.20.0'
   spec.add_dependency 'ruby-enum', '~> 0.5.0', '>= 0.5.0'
   spec.add_dependency 'colorize', '~> 0.7.7', '>= 0.7.7'
-  spec.add_dependency 'json', '~> 1.8.3', '>= 1.8.3'
+  spec.add_dependency 'json', '~> 2.6.0', '>= 2.6.0'
   spec.add_dependency 'carbon_date', '~> 0.1.2', '>= 0.1.2'
 
 end
